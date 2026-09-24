@@ -75,7 +75,7 @@ function buildFilm(section) {
   const variant = portrait() ? 'm' : 'd'
   const canvas = section.querySelector('.film__canvas')
   const seq = new FrameSequence(canvas, {
-    base: `/film/${name}/${variant}`,
+    base: `${import.meta.env.BASE_URL}film/${name}/${variant}`,
     count: Number(section.dataset.frames),
     focusX: 0.5,
   })
@@ -118,7 +118,7 @@ function setupHero(film, variant) {
   }
   img.onload = () => { ok = true; paint() }
   img.onerror = () => { cut.remove() }
-  img.src = `/film/${film.name}/cutout-${variant}.webp`
+  img.src = `${import.meta.env.BASE_URL}film/${film.name}/cutout-${variant}.webp`
   window.addEventListener('resize', paint)
 
   film.onProgress = p => {
