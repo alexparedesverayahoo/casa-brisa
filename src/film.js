@@ -5,7 +5,8 @@
 const pad = (n, w) => String(n).padStart(w, '0')
 
 export class FrameSequence {
-  constructor(canvas, { base, count, ext = 'webp', digits = 4, focusX = 0.5, focusY = 0.5 }) {
+  constructor(canvas, { base, count, ext = 'webp', digits = 4, focusX = 0.5, focusY = 0.5, version = '' }) {
+    this.query = version ? `?v=${version}` : ''
     this.canvas = canvas
     this.ctx = canvas.getContext('2d', { alpha: false })
     this.base = base
@@ -24,7 +25,7 @@ export class FrameSequence {
   }
 
   src(i) {
-    return `${this.base}/${pad(i + 1, this.digits)}.${this.ext}`
+    return `${this.base}/${pad(i + 1, this.digits)}.${this.ext}${this.query}`
   }
 
   loadFrame(i) {

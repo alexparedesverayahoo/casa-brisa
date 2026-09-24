@@ -88,6 +88,7 @@ function buildFilm(section) {
     base: `${import.meta.env.BASE_URL}film/${name}/${variant}`,
     count: Number(section.dataset.frames),
     focusX: 0.5,
+    version: __BUILD__,
   })
   const chapters = setupChapters(section)
   const film = { section, seq, chapters, name, progress: 0 }
@@ -131,7 +132,7 @@ function setupHero(film, variant) {
   }
   img.onload = () => { ok = true; paint() }
   img.onerror = () => { cut.remove() }
-  img.src = `${import.meta.env.BASE_URL}film/${film.name}/cutout-${variant}.webp`
+  img.src = `${import.meta.env.BASE_URL}film/${film.name}/cutout-${variant}.webp?v=${__BUILD__}`
   window.addEventListener('resize', paint)
 
   film.onProgress = p => {
