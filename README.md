@@ -25,4 +25,4 @@ python tools/build_frames.py caleta 240 clip_dia_atardecer.mp4 clip_atardecer_no
 ```
 
 ## Tarjeta para compartir (WhatsApp, Facebook, X)
-`public/img/og.jpg` (1200×630) se genera renderizando `tools/og-card.html` con Playwright junto a `bg.png` (primer fotograma del hero) y `cutout.webp` (cielo transparente). Si se cambia la imagen, subir el número `?v=` en las etiquetas `og:image` de `index.html` para que WhatsApp y Facebook no usen la versión en caché.
+`public/img/casa-brisa-tarjeta.jpg` (1200×630) se genera renderizando `tools/og-card.html` con Playwright junto a `bg.png` (primer fotograma del hero) y `cutout.webp` (cielo transparente). Si se cambia la imagen, cambiar el nombre del archivo (y en las etiquetas `og:image` de `index.html`) para que WhatsApp y Facebook no usen la versión en caché.

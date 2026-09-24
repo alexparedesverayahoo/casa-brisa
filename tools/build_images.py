@@ -68,7 +68,7 @@ def main():
         p = OUT / f'{name}.webp'
         im.save(p, 'WEBP', quality=78, method=6)
         total += p.stat().st_size
-    # public/img/og.jpg es la tarjeta para compartir: se genera aparte con tools/og-card.html
+    # public/img/casa-brisa-tarjeta.jpg es la tarjeta para compartir: se genera aparte con tools/og-card.html
     print(f'{len(IMAGES)} imágenes · {total/1e6:.1f} MB')
 
 
