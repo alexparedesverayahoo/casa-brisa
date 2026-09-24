@@ -201,7 +201,7 @@ ScrollTrigger.matchMedia({
 })
 
 /* Aparición de bloques */
-const toReveal = document.querySelectorAll('.facts .display, .facts__list li, .facts__note, .daynight__head, .dn-card, .where .display, .where__lede, .where__list li, .route, .book__inner > *')
+const toReveal = document.querySelectorAll('.facts .display, .facts__list li, .facts__note, .perks li, .daynight__head, .dn-card, .where .display, .where__lede, .where__list li, .route, .book__inner > *')
 toReveal.forEach((el, i) => { el.setAttribute('data-reveal', ''); el.style.transitionDelay = `${(i % 6) * 70}ms` })
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target) } })

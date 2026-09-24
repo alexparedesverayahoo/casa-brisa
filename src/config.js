@@ -5,7 +5,11 @@ export const LISTING = {
   airbnbId: '', // POR CONFIRMAR: ID numérico del anuncio (airbnb.com.pe/rooms/<ID>)
   airbnbDomain: 'https://www.airbnb.com.pe',
   whatsapp: '', // POR CONFIRMAR: número con código de país, sin + ni espacios (ej. 51987654321)
-  maxGuests: 8, // POR CONFIRMAR
+  maxGuests: 8,
+  heatedJacuzzi: true,
+  petsAllowed: true,
+  includes: ['wifi', 'estacionamiento', 'ropa de cama y toallas'],
+  walkToBeachMin: 5,
   bedrooms: 3,
   bathrooms: 2,
   place: 'Playa Chocalla',
