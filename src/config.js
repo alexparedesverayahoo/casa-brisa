@@ -6,7 +6,7 @@ export const LISTING = {
   airbnbDomain: 'https://www.airbnb.com.pe',
   whatsapp: '51991966430',
   maxGuests: 8,
-  heatedJacuzzi: true,
+  heatedJacuzzi: false, // con hidromasaje, no temperado
   petsAllowed: true,
   includes: ['TV con cable', '2 cocheras', 'ropa de cama y toallas', 'limpieza de salida'],
   condo: 'Condominio Arena y Campo',
