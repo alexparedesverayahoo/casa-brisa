@@ -126,8 +126,8 @@ body.is-ready .nav { transform: translate(-50%, 0); }
 
 /* Texto detrás de las sombrillas */
 .hero-word {
-  position: absolute; left: 50%; top: 13%; transform: translateX(-50%);
-  font: 900 clamp(84px, 22vw, 400px)/0.8 var(--f-display); font-stretch: 125%;
+  position: absolute; left: 50%; top: 11%; transform: translateX(-50%);
+  font: 900 clamp(64px, 13.2vw, 250px)/0.8 var(--f-display); font-stretch: 125%;
   letter-spacing: -0.03em; white-space: nowrap; pointer-events: none;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 18%, rgba(255, 255, 255, 0.42) 62%, rgba(255, 255, 255, 0.08) 92%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -213,7 +213,8 @@ body.is-ready .nav { transform: translate(-50%, 0); }
 /* Interiores */
 .rooms { background: var(--ink); color: var(--on-dark); }
 .rooms__pin { height: 100vh; height: 100svh; display: flex; align-items: center; gap: clamp(32px, 5vw, 80px); padding-left: var(--gutter); overflow: hidden; }
-.rooms__intro { flex: 0 0 min(440px, 36vw); }
+.rooms__intro { flex: 0 0 min(460px, 34vw); position: relative; z-index: 2; }
+.rooms__intro .display { font-size: clamp(40px, 4.6vw, 76px); }
 .rooms__lede { margin: 28px 0 0; color: var(--on-dark-2); max-width: 38ch; }
 .rooms__track { display: flex; gap: 20px; align-items: flex-end; padding-right: var(--gutter); will-change: transform; }
 .room { flex: 0 0 auto; width: clamp(300px, 34vw, 560px); margin: 0; }
@@ -287,7 +288,7 @@ body.is-ready .nav { transform: translate(-50%, 0); }
   .nav { top: 10px; gap: 14px; padding-left: 16px; width: calc(100% - 20px); justify-content: space-between; }
   .hud { top: 76px; }
   .hud__coords { display: none; }
-  .hero-word { top: 16%; font-size: 23vw; }
+  .hero-word { top: 14%; font-size: 17vw; }
   .chapter, .chapter--right, .hero-copy { left: var(--gutter); right: var(--gutter); width: auto; text-align: left; }
   .chapter--right p:not(.chapter__time) { margin-left: 0; }
   .film__shade { background: linear-gradient(180deg, rgba(12, 20, 24, 0.4) 0%, rgba(12, 20, 24, 0) 20%), linear-gradient(0deg, rgba(12, 20, 24, 0.85) 0%, rgba(12, 20, 24, 0) 60%); }

@@ -57,7 +57,7 @@ const sun = document.querySelector('.sundial__sun')
 const clock = document.querySelector('.sundial__time')
 function renderSundial(p) {
   if (!sundial) return
-  const minutes = p < 0.5 ? 720 + (p / 0.5) * 400 : 1120 + ((p - 0.5) / 0.5) * 170
+  const minutes = p < 0.5 ? 720 + Math.pow(p / 0.5, 1.6) * 410 : 1130 + ((p - 0.5) / 0.5) * 160
   const h = Math.floor(minutes / 60), m = Math.floor(minutes % 60)
   clock.textContent = `${h}:${String(m).padStart(2, '0')}`
   // el sol baja por el arco hasta el horizonte; de noche la luna sube del otro lado
@@ -117,7 +117,7 @@ function setupHero(film, variant) {
   }
   img.onload = () => { ok = true; paint() }
   img.onerror = () => { cut.remove() }
-  img.src = `/film/${film.name}/cutout-${variant}.png`
+  img.src = `/film/${film.name}/cutout-${variant}.webp`
   window.addEventListener('resize', paint)
 
   film.onProgress = p => {
