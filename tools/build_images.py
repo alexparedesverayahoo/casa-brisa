@@ -9,8 +9,7 @@ OUT = ROOT / 'public' / 'img'
 
 # nombre web -> archivo fuente (la versión más reciente gana)
 IMAGES = {
-    'fachada-dia': 'fotos_v2/09b_fachada_dia.png',
-    'fachada-noche': 'fotos_v2/10b_fachada_noche.png',
+    # Exteriores comunes (solo cielo y limpieza)
     'condominio-atardecer': 'fotos_v1/07_condominio_atardecer.png',
     'condominio-noche': 'fotos_v1/08_condominio_noche.png',
     'caleta-dia': 'fotos_v1/01_playa_dia.png',
@@ -18,18 +17,24 @@ IMAGES = {
     'caleta-noche': 'fotos_v1/03_playa_noche.png',
     'camino': 'fotos_v1/04_camino_playa.png',
     'juegos': 'fotos_v1/05_juegos_ninos.png',
-    'terraza': 'fotos_v1/11_terraza_parrilla.png',
-    'jacuzzi-noche': 'fotos_v2/12b_jacuzzi_noche.png',
-    'sala': 'fotos_v1/14_sala.png',
-    'sala-comedor': 'fotos_v1/13_sala_comedor.png',
-    'comedor': 'fotos_v2/15b_comedor_cocina.png',
-    'cocina': 'fotos_v2/16b_cocina_noche.png',
-    'dormitorio-principal': 'fotos_v1/17_dormitorio_principal.png',
-    'dormitorio-2': 'fotos_v1/18_dormitorio_tv.png',
-    'dormitorio-ninos': 'fotos_v1/19_dormitorio_ninos.png',
-    'dormitorio-surf': 'fotos_v1/20_dormitorio_surf.png',
-    'bano': 'fotos_v1/21_bano.png',
-    'bano-2': 'fotos_v1/22_bano_2.png',
+    # Rediseño "Costa Serena"
+    'fachada-dia': 'rediseno/final/fachada_dia_jacuzzi_madera.png',
+    'fachada-noche': 'rediseno/final/fachada_noche_jacuzzi_madera.png',
+    'terraza-dia': 'rediseno/terraza/terraza_A_lounge_dia.png',
+    'terraza-noche': 'rediseno/terraza/terraza_A_lounge_noche_v2.png',
+    'jacuzzi-dia': 'rediseno/jacuzzi/jacuzzi_FINAL_dia.png',
+    'jacuzzi-noche': 'rediseno/jacuzzi/jacuzzi_FINAL_noche.png',
+    'sala': 'rediseno/sala/sala_frontal_dia_v3.png',
+    'sala-comedor': 'rediseno/final/sala_comedor_general_nuevo.png',
+    'comedor': 'rediseno/comedor_cocina/comedor_A2b_inversion_dia.png',
+    'cocina': 'rediseno/comedor_cocina/cocina_B2b_inversion_noche.png',
+    'dormitorio-principal': 'rediseno/dorm_principal/B2_dia_roble_rejilla.png',
+    'dormitorio-principal-noche': 'rediseno/dorm_principal/B2_noche_roble_rejilla.png',
+    'dormitorio-principal-tv': 'rediseno/final/dormitorio_principal_vista_tv.png',
+    'dormitorio-ninos': 'rediseno/dorm_ninos/FINAL_A_dorm_ninos_friso.png',
+    'dormitorio-ninos-2': 'rediseno/dorm_ninos/FINAL_B_dorm_ninos_friso.png',
+    'bano': 'rediseno/banos/bano_lavatorio_premium_v2.png',
+    'bano-2': 'rediseno/banos/bano_ducha_premium_v1.png',
 }
 
 
