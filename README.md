@@ -1,6 +1,6 @@
 # Casa Brisa — web inmersiva
 
-**🌊 Ver la web: https://alexparedesverayahoo.github.io/caleta-004-web/**
+**🌊 Ver la web: https://alexparedesverayahoo.github.io/casa-brisa/**
 
 Landing para alquilar por temporada el depa 004 (Casa Brisa) de Playa Chocalla, Condominio Arena y Campo, (km 92.5 Panamericana Sur, Asia, Lima) vía Airbnb.
 
