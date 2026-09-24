@@ -124,6 +124,25 @@ body.is-ready .nav { transform: translate(-50%, 0); }
 }
 .film__shade--soft { background: linear-gradient(0deg, rgba(12, 20, 24, 0.7) 0%, rgba(12, 20, 24, 0) 50%); }
 
+/* Transición entre escenas: cada escena sube como una carta sobre la anterior */
+main section, .stack-group { position: relative; }
+.stack-group { z-index: 1; }
+.stack {
+  z-index: 1;
+  border-radius: 34px 34px 0 0;
+  overflow: clip;
+  box-shadow: 0 -24px 60px rgba(4, 12, 16, 0.45);
+}
+.film + .stack, .film + .stack-group, .stack-group + .stack { margin-top: -100vh; margin-top: -100svh; }
+.facts.stack { position: sticky; }
+.stack::before {
+  content: ''; position: absolute; z-index: 6; left: 50%; top: 14px; width: 54px; height: 4px; margin-left: -27px;
+  border-radius: 4px; background: rgba(240, 194, 122, 0.55); pointer-events: none;
+}
+.facts.stack::before, .daynight.stack::before { background: rgba(31, 111, 120, 0.35); }
+.scene-dim { position: absolute; inset: 0; z-index: 5; background: #081014; opacity: 0; pointer-events: none; }
+.film__sticky, .facts > .wrap { transform-origin: 50% 35%; will-change: transform; }
+
 /* Texto detrás de las sombrillas */
 .hero-word {
   position: absolute; left: 50%; top: 16%; transform: translateX(-50%);

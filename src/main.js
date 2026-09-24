@@ -68,6 +68,16 @@ function renderSundial(p) {
   sundial.classList.toggle('is-night', p >= 0.5)
 }
 
+/* Escenas apiladas: navegar entre secciones aunque estén dentro de un .stack-group */
+const inGroup = el => el.parentElement?.classList.contains('stack-group')
+const isStack = el => !!el && (el.classList.contains('stack') || el.classList.contains('stack-group'))
+const nextScene = el => el.nextElementSibling || (inGroup(el) ? el.parentElement.nextElementSibling : null)
+function prevScene(el) {
+  let p = el.previousElementSibling || (inGroup(el) ? el.parentElement.previousElementSibling : null)
+  if (p?.classList.contains('stack-group')) p = p.lastElementChild
+  return p
+}
+
 /* Películas */
 const films = []
 function buildFilm(section) {
@@ -84,10 +94,13 @@ function buildFilm(section) {
 
   if (section.classList.contains('film--hero')) setupHero(film, variant)
 
+  // Si la escena siguiente sube encima (carta apilada), la película termina antes de que la cubra
+  const covered = () => (isStack(nextScene(section)) ? innerHeight : 0)
   ScrollTrigger.create({
     trigger: section,
     start: 'top top',
-    end: 'bottom bottom',
+    end: () => '+=' + Math.max(1, section.offsetHeight - innerHeight - covered()),
+    invalidateOnRefresh: true,
     onUpdate: self => {
       film.progress = self.progress
       seq.setProgress(self.progress)
@@ -164,11 +177,31 @@ async function intro() {
 }
 intro()
 
+/* Transiciones entre escenas: la anterior se aleja y oscurece mientras la nueva sube encima */
+const facts = document.querySelector('.facts.stack')
+const setStickyTop = () => { if (facts) facts.style.top = Math.min(0, innerHeight - facts.offsetHeight) + 'px' }
+setStickyTop()
+ScrollTrigger.addEventListener('refreshInit', setStickyTop)
+document.querySelectorAll('.stack').forEach(next => {
+  const prev = prevScene(next)
+  if (!prev) return
+  // el disparador no puede ser un elemento sticky: si es el primero de un grupo, usar el grupo
+  const trigger = inGroup(next) && !next.previousElementSibling ? next.parentElement : next
+  const target = prev.classList.contains('film') ? prev.querySelector('.film__sticky') : prev.querySelector(':scope > .wrap') || prev
+  const dim = document.createElement('div')
+  dim.className = 'scene-dim'
+  ;(prev.classList.contains('film') ? target : prev).appendChild(dim)
+  if (reduced) return
+  gsap.timeline({ scrollTrigger: { trigger, start: 'top bottom', end: 'top top', scrub: true } })
+    .fromTo(target, { scale: 1, y: 0 }, { scale: 0.9, y: -30, ease: 'none' }, 0)
+    .fromTo(dim, { opacity: 0 }, { opacity: 0.72, ease: 'none' }, 0)
+})
+
 /* Navegación más sólida fuera del hero */
 const nav = document.querySelector('.nav')
 ScrollTrigger.create({
-  trigger: '#el-004',
-  start: 'top 80px',
+  trigger: '#film-caleta',
+  start: 'bottom 80px',
   onEnter: () => nav.classList.add('is-solid'),
   onLeaveBack: () => nav.classList.remove('is-solid'),
 })
