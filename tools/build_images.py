@@ -26,11 +26,11 @@ IMAGES = {
     'juegos': ('fotos_v1/05_juegos_ninos.png', {}),
     # El depa
     'fachada-dia': ('fotos_v2/09b_fachada_dia.png', {}),
-    'fachada-noche': ('fotos_v2/10b_fachada_noche.png', {}),
+    'fachada-noche': ('sin_vapor/fachada_noche_sin_vapor.png', {}),
     'terraza-dia': ('fotos_v1/11_terraza_parrilla.png', {}),
     'terraza-noche': ('fotos_v3_ligero/terraza_noche.png', {}),
     'jacuzzi-dia': ('fotos_v3_ligero/jacuzzi_dia.png', {}),
-    'jacuzzi-noche': ('fotos_v2/12b_jacuzzi_noche.png', {}),
+    'jacuzzi-noche': ('sin_vapor/jacuzzi_noche_sin_vapor.png', {}),
     'sala': ('fotos_v3_ligero/sala_dia_fix.png', {'crop': (0, 0, 0, 0.09)}),
     'sala-comedor': ('fotos_v3_ligero/sala_comedor_dia.png', {'crop': (0.03, 0, 0, 0)}),
     'sala-comedor-noche': ('fotos_v3_ligero/sala_comedor_noche_led.png', {'white': True}),
