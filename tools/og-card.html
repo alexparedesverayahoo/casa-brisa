@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- Tarjeta para compartir (1200x630). Se renderiza con Playwright junto a bg.png (primer fotograma del hero)
+     y cutout.webp (el mismo fotograma con el cielo transparente) y se guarda como public/img/og.jpg -->
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,900&family=Instrument+Serif:ital@0;1&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #0c1418; }
+  .card { position: relative; width: 1200px; height: 630px; overflow: hidden; }
+  .layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+  .word {
+    position: absolute; left: 46%; top: 62px; transform: translateX(-50%); white-space: nowrap;
+    font: 900 98px/0.8 'Archivo', sans-serif; font-stretch: 125%; letter-spacing: -0.03em;
+    background: linear-gradient(180deg, #fff 30%, rgba(255, 255, 255, 0.86) 58%, rgba(255, 255, 255, 0.55) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 4px 22px rgba(8, 30, 48, 0.25));
+  }
+  .shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(12, 20, 24, 0.82) 0%, rgba(12, 20, 24, 0.35) 30%, rgba(12, 20, 24, 0) 52%); }
+  .info { position: absolute; left: 56px; right: 56px; bottom: 44px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; color: #faf7f1; }
+  .eyebrow { font: 700 15px/1 'Manrope', sans-serif; letter-spacing: 0.24em; text-transform: uppercase; color: #f0c27a; margin-bottom: 14px; }
+  .title { font: 400 50px/1 'Instrument Serif', serif; }
+  .title em { color: #f0c27a; }
+  .chips { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+  .chip { padding: 10px 18px; border-radius: 999px; font: 600 17px/1 'Manrope', sans-serif; color: #fff; background: rgba(12, 20, 24, 0.45); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25); backdrop-filter: blur(10px); }
+  .chip b { color: #f0c27a; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <img class="layer" src="bg.png" alt="" />
+    <div class="word">CASA BRISA</div>
+    <img class="layer" src="cutout.webp" alt="" />
+    <div class="shade"></div>
+    <div class="info">
+      <div>
+        <p class="eyebrow">Playa Chocalla · km 92.5 · Asia</p>
+        <p class="title">Jardín privado y <em>jacuzzi temperado.</em></p>
+      </div>
+      <div class="chips">
+        <span class="chip">3 dorm · 2 baños · 8 huéspedes</span>
+        <span class="chip">Playa a 5 min · desde <b>S/ 1,500</b></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

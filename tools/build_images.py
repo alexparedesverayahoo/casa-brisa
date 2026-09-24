@@ -68,10 +68,7 @@ def main():
         p = OUT / f'{name}.webp'
         im.save(p, 'WEBP', quality=78, method=6)
         total += p.stat().st_size
-    og = Image.open(HF / IMAGES['caleta-atardecer'][0]).convert('RGB')
-    w, h = og.size
-    ch = round(w * 630 / 1200)
-    og.crop((0, (h - ch) // 2, w, (h - ch) // 2 + ch)).resize((1200, 630), Image.LANCZOS).save(OUT / 'og.jpg', quality=85)
+    # public/img/og.jpg es la tarjeta para compartir: se genera aparte con tools/og-card.html
     print(f'{len(IMAGES)} imágenes · {total/1e6:.1f} MB')
 
 

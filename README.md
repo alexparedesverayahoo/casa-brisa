@@ -23,3 +23,6 @@ npm run dev
 ```bash
 python tools/build_frames.py caleta 240 clip_dia_atardecer.mp4 clip_atardecer_noche.mp4 --focus 0.62
 ```
+
+## Tarjeta para compartir (WhatsApp, Facebook, X)
+`public/img/og.jpg` (1200×630) se genera renderizando `tools/og-card.html` con Playwright junto a `bg.png` (primer fotograma del hero) y `cutout.webp` (cielo transparente). Si se cambia la imagen, subir el número `?v=` en las etiquetas `og:image` de `index.html` para que WhatsApp y Facebook no usen la versión en caché.
