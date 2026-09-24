@@ -1,14 +1,19 @@
 // Datos del anuncio. Los marcados con POR CONFIRMAR deben validarse con el propietario
 // antes de publicar: la web no debe prometer nada que el depa no tenga.
 export const LISTING = {
-  name: 'Caleta 004',
+  name: 'Casa Brisa',
   airbnbId: '', // POR CONFIRMAR: ID numérico del anuncio (airbnb.com.pe/rooms/<ID>)
   airbnbDomain: 'https://www.airbnb.com.pe',
-  whatsapp: '', // POR CONFIRMAR: número con código de país, sin + ni espacios (ej. 51987654321)
+  whatsapp: '51991966430',
   maxGuests: 8,
   heatedJacuzzi: true,
   petsAllowed: true,
-  includes: ['wifi', 'estacionamiento', 'ropa de cama y toallas'],
+  includes: ['TV con cable', '2 cocheras', 'ropa de cama y toallas', 'limpieza de salida'],
+  condo: 'Condominio Arena y Campo',
+  areaM2: 100,
+  priceFrom: 'S/ 1,500',
+  checkIn: '15:00',
+  checkOut: '12:00',
   walkToBeachMin: 5,
   bedrooms: 3,
   bathrooms: 2,

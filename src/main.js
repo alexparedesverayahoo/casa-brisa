@@ -105,6 +105,7 @@ function setupHero(film, variant) {
   const word = film.section.querySelector('.hero-word')
   const cut = film.section.querySelector('.hero-cutout')
   const copy = film.section.querySelector('.hero-copy')
+  const hud = film.section.querySelector('.hud')
   const ctx = cut.getContext('2d')
   const img = new Image()
   let ok = false
@@ -128,6 +129,7 @@ function setupHero(film, variant) {
     copy.style.opacity = 1 - clamp01((p - 0.02) / 0.08)
     copy.style.transform = `translateY(${-clamp01(p / 0.1) * 40}px)`
     copy.style.visibility = p > 0.12 ? 'hidden' : 'visible'
+    hud.style.opacity = clamp01((p - 0.05) / 0.05)
     renderSundial(p)
   }
   film.onProgress(0)

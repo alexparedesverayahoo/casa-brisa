@@ -1,6 +1,6 @@
-# Caleta 004 — web inmersiva
+# Casa Brisa — web inmersiva
 
-Landing para alquilar por temporada el depa 004 de Playa Chocalla (km 92.5 Panamericana Sur, Asia, Lima) vía Airbnb.
+Landing para alquilar por temporada el depa 004 (Casa Brisa) de Playa Chocalla, Condominio Arena y Campo, (km 92.5 Panamericana Sur, Asia, Lima) vía Airbnb.
 
 ## Concepto
 "Un día entero en la caleta": el scroll controla la hora del día. El hero es una secuencia de fotogramas (canvas) generada con Higgsfield (Seedance 2.5) a partir de fotos reales del depa editadas con Nano Banana Pro: mediodía → atardecer → noche.
