@@ -2,7 +2,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { FrameSequence, drawCover } from './film.js'
-import { LISTING, airbnbUrl, whatsappUrl } from './config.js'
+import { LISTING, whatsappUrl } from './config.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -262,11 +262,6 @@ form.elements.checkIn.addEventListener('change', () => {
 const data = () => ({ checkIn: form.elements.checkIn.value, checkOut: form.elements.checkOut.value, adults: guests.value, guests: guests.value })
 form.addEventListener('submit', e => {
   e.preventDefault()
-  const url = airbnbUrl(data())
-  if (!url) { note.textContent = 'Falta configurar el enlace del anuncio de Airbnb.'; return }
-  window.open(url, '_blank', 'noopener')
-})
-form.querySelector('[data-action="whatsapp"]').addEventListener('click', () => {
   const url = whatsappUrl(data())
   if (!url) { note.textContent = 'Falta configurar el número de WhatsApp.'; return }
   window.open(url, '_blank', 'noopener')

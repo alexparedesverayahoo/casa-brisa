@@ -281,11 +281,13 @@ main section, .stack-group { position: relative; }
 .book__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12, 20, 24, 0.86) 0%, rgba(12, 20, 24, 0.5) 60%, rgba(12, 20, 24, 0.3) 100%); }
 .book__inner { position: relative; }
 .book__form {
-  margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto auto; gap: 12px; align-items: end;
+  margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; gap: 12px; align-items: end;
   padding: 14px; border-radius: 28px; max-width: 1080px;
   background: rgba(12, 20, 24, 0.5); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
   box-shadow: inset 0 0 0 1px rgba(250, 247, 241, 0.14);
 }
+.btn--wa { min-height: 56px; padding: 0 30px; font-size: 16px; }
+.btn--wa svg { width: 22px; height: 22px; fill: currentColor; }
 .book__form label { min-width: 0; display: grid; gap: 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--on-dark-2); padding: 4px 8px; }
 .book__form input, .book__form select {
   appearance: none; width: 100%; min-width: 0; min-height: 48px; border: 0; border-radius: 14px; padding: 0 12px;
@@ -303,6 +305,7 @@ main section, .stack-group { position: relative; }
 .foot__brand b { font-weight: 400; font-style: italic; color: var(--gold); }
 .foot__brand span { font: 500 13px var(--f-sans); color: var(--on-dark-2); letter-spacing: 0.08em; }
 .foot p { margin: 0; font-size: 14px; }
+.foot a { color: var(--gold); text-decoration: none; }
 .foot__small { opacity: 0.6; }
 
 /* Aparición al entrar en pantalla */

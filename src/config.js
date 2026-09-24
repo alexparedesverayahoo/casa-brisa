@@ -36,6 +36,9 @@ export function airbnbUrl({ checkIn, checkOut, adults, children }) {
 export function whatsappUrl({ checkIn, checkOut, guests }) {
   if (!LISTING.whatsapp) return null
   const fmt = d => (d ? new Date(d + 'T12:00').toLocaleDateString('es-PE', { day: 'numeric', month: 'long' }) : '—')
-  const text = `Hola, me interesa el ${LISTING.name} en ${LISTING.place} del ${fmt(checkIn)} al ${fmt(checkOut)} para ${guests || '?'} personas. ¿Está disponible?`
+  const people = guests ? ` para ${guests} ${guests == 1 ? 'persona' : 'personas'}` : ''
+  const text = checkIn && checkOut
+    ? `Hola, me interesa alquilar ${LISTING.name} (${LISTING.place}) del ${fmt(checkIn)} al ${fmt(checkOut)}${people}. ¿Está disponible?`
+    : `Hola, me interesa alquilar ${LISTING.name} (${LISTING.place})${people}. ¿Qué fechas tienen disponibles?`
   return `https://wa.me/${LISTING.whatsapp}?text=${encodeURIComponent(text)}`
 }
