@@ -176,7 +176,8 @@ ScrollTrigger.create({
 /* Día / noche */
 const dn = document.querySelector('.daynight')
 const dnBtn = document.querySelector('.dn-toggle')
-dnBtn.addEventListener('click', () => {
+dnBtn.addEventListener('click', e => {
+  if (e.isTrusted) dnBtn.classList.add('is-touched')
   const night = dnBtn.getAttribute('aria-pressed') !== 'true'
   dnBtn.setAttribute('aria-pressed', String(night))
   dn.classList.toggle('is-night', night)

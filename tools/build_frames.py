@@ -16,6 +16,8 @@ from pathlib import Path
 
 from PIL import Image
 
+from whiten import whiten
+
 ROOT = Path(__file__).resolve().parent.parent
 FILM = ROOT / 'public' / 'film'
 
@@ -52,6 +54,7 @@ def main():
     ap.add_argument('--dw', type=int, default=1600)
     ap.add_argument('--mw', type=int, default=720)
     ap.add_argument('--q', type=int, default=64)
+    ap.add_argument('--white-from', type=float, help='desde qué fracción del acto aplicar el blanco LED (interiores)')
     a = ap.parse_args()
 
     dest = FILM / a.act
@@ -71,6 +74,11 @@ def main():
         dsize = msize = 0
         for i, f in enumerate(frames, 1):
             im = Image.open(f).convert('RGB')
+            if a.white_from is not None:
+                t = (i - 1) / max(1, len(frames) - 1)
+                k = min(1.0, max(0.0, (t - a.white_from) / 0.15))
+                if k > 0:
+                    im = whiten(im, 1.25 * k)
             w, h = im.size
             d = im.resize((a.dw, round(h * a.dw / w)), Image.LANCZOS)
             p = dest / 'd' / f'{i:04d}.webp'
