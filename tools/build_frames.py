@@ -4,7 +4,8 @@ Uso:
   python tools/build_frames.py caleta 160 clipA.mp4 clipB.mp4 [--focus 0.55]
 
 Genera public/film/<acto>/d/0001.webp… (escritorio, 16:9, 1600 px)
-y public/film/<acto>/m/0001.webp… (celular, recorte 9:16 con punto focal).
+y public/film/<acto>/m/0001.webp… (celular: la escena completa 16:9 a 960 px; la web la muestra
+en una franja a todo el ancho sobre un fondo difuminado, sin recortar).
 Si existe un clip vertical nativo, pasar --mobile clip916.mp4 para usarlo en vez del recorte.
 """
 import argparse
@@ -49,10 +50,10 @@ def main():
     ap.add_argument('act')
     ap.add_argument('count', type=int)
     ap.add_argument('clips', nargs='+')
-    ap.add_argument('--focus', type=float, default=0.5, help='punto focal horizontal del recorte 9:16')
+    ap.add_argument('--focus', type=float, default=0.5, help='(sin uso: el celular ya no recorta)')
     ap.add_argument('--mobile', help='clip vertical nativo opcional')
     ap.add_argument('--dw', type=int, default=1600)
-    ap.add_argument('--mw', type=int, default=720)
+    ap.add_argument('--mw', type=int, default=960)
     ap.add_argument('--q', type=int, default=64)
     ap.add_argument('--white-from', type=float, help='desde qué fracción del acto aplicar el blanco LED (interiores)')
     a = ap.parse_args()
@@ -88,9 +89,7 @@ def main():
             if mframes:
                 m = Image.open(mframes[i - 1]).convert('RGB')
             else:
-                cw = round(h * 9 / 16)
-                x = round((w - cw) * a.focus)
-                m = im.crop((x, 0, x + cw, h))
+                m = im
             m = m.resize((a.mw, round(m.height * a.mw / m.width)), Image.LANCZOS)
             p = dest / 'm' / f'{i:04d}.webp'
             m.save(p, 'WEBP', quality=a.q, method=6)

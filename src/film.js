@@ -5,7 +5,8 @@
 const pad = (n, w) => String(n).padStart(w, '0')
 
 export class FrameSequence {
-  constructor(canvas, { base, count, ext = 'webp', digits = 4, focusX = 0.5, focusY = 0.5, version = '' }) {
+  constructor(canvas, { base, count, ext = 'webp', digits = 4, focusX = 0.5, focusY = 0.5, version = '', fit = 'cover' }) {
+    this.fit = fit
     this.query = version ? `?v=${version}` : ''
     this.canvas = canvas
     this.ctx = canvas.getContext('2d', { alpha: false })
@@ -84,7 +85,9 @@ export class FrameSequence {
     const k = this.nearestReady(i)
     if (k < 0 || k === this.current) return
     this.current = k
-    drawCover(this.ctx, this.frames[k].img, this.canvas.width, this.canvas.height, this.focusX, this.focusY)
+    const img = this.frames[k].img
+    if (this.fit === 'band') drawBand(this.ctx, img, this.canvas.width, this.canvas.height)
+    else drawCover(this.ctx, img, this.canvas.width, this.canvas.height, this.focusX, this.focusY)
   }
 
   resize() {
@@ -92,6 +95,7 @@ export class FrameSequence {
     const r = this.canvas.getBoundingClientRect()
     this.canvas.width = Math.round(r.width * dpr)
     this.canvas.height = Math.round(r.height * dpr)
+    this.onResize && this.onResize(r.width, r.height)
     const k = this.current
     this.current = -1
     if (k >= 0) this.draw(k)
@@ -106,4 +110,32 @@ export function drawCover(ctx, img, cw, ch, fx = 0.5, fy = 0.5) {
   const w = iw * s, h = ih * s
   const x = (cw - w) * fx, y = (ch - h) * fy
   ctx.drawImage(img, x, y, w, h)
+}
+
+// Celular en vertical: la escena completa (16:9) a todo el ancho, sin recortar.
+// Devuelve el rectángulo que ocupa dentro de un área cw × ch (en las mismas unidades).
+export function bandRect(cw, ch, ratio = 16 / 9) {
+  const w = cw, h = cw / ratio
+  const y = Math.max(ch * 0.11, (ch - h) * 0.34)
+  return { x: 0, y, w, h }
+}
+
+// Fondo ambiente: el mismo fotograma reducido a pocos píxeles y ampliado (desenfoque barato), oscurecido
+const tiny = typeof document !== 'undefined' ? document.createElement('canvas') : null
+if (tiny) { tiny.width = 24; tiny.height = 14 }
+
+export function drawBand(ctx, img, cw, ch) {
+  const iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height
+  if (!iw || !ih) return
+  const t = tiny.getContext('2d')
+  t.drawImage(img, 0, 0, tiny.width, tiny.height)
+  ctx.imageSmoothingEnabled = true
+  ctx.imageSmoothingQuality = 'low'
+  const s = Math.max(cw / tiny.width, ch / tiny.height) * 1.15
+  ctx.drawImage(tiny, (cw - tiny.width * s) / 2, (ch - tiny.height * s) / 2, tiny.width * s, tiny.height * s)
+  ctx.fillStyle = 'rgba(12, 20, 24, 0.55)'
+  ctx.fillRect(0, 0, cw, ch)
+  const r = bandRect(cw, ch, iw / ih)
+  ctx.imageSmoothingQuality = 'high'
+  ctx.drawImage(img, r.x, r.y, r.w, r.h)
 }

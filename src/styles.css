@@ -343,6 +343,23 @@ main section, .stack-group { position: relative; }
   .book__form .btn { grid-column: span 2; }
 }
 
+/* Celular y tablet en vertical: la escena completa en una franja, sin recortar la foto */
+@media (max-aspect-ratio: 1/1) {
+  .hero-word { top: calc(var(--band-top, 30%) + var(--band-h, 56vw) * 0.16); font-size: 8.2vw; }
+  .film__shade, .film__shade--soft {
+    background:
+      linear-gradient(180deg, rgba(12, 20, 24, 0.5) 0%, rgba(12, 20, 24, 0) 12%),
+      linear-gradient(0deg, rgba(12, 20, 24, 0.6) 0%, rgba(12, 20, 24, 0) 34%);
+  }
+  .chapter__title { font-size: clamp(34px, 9vw, 52px); }
+}
+@media (max-aspect-ratio: 1/1) and (max-height: 700px) {
+  .chapter { bottom: 18px; }
+  .chapter__time { margin-bottom: 10px; }
+  .chapter__title { margin-bottom: 10px; font-size: 28px; }
+  .chapter p:not(.chapter__time) { font-size: 14.5px; line-height: 1.5; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
