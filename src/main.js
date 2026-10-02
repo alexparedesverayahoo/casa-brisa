@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
-import { FrameSequence, drawCover } from './film.js'
+import { FrameSequence, drawCover, bandRect } from './film.js'
 import { LISTING, whatsappUrl } from './config.js'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -89,7 +89,18 @@ function buildFilm(section) {
     count: Number(section.dataset.frames),
     focusX: 0.5,
     version: __BUILD__,
+    fit: variant === 'm' ? 'band' : 'cover',
   })
+  // En celular la foto va completa en una franja: exponer su posición para ubicar el texto encima o debajo
+  if (variant === 'm') {
+    const sticky = section.querySelector('.film__sticky')
+    seq.onResize = (w, h) => {
+      const r = bandRect(w, h)
+      sticky.style.setProperty('--band-top', r.y + 'px')
+      sticky.style.setProperty('--band-h', r.h + 'px')
+    }
+    seq.resize()
+  }
   const chapters = setupChapters(section)
   const film = { section, seq, chapters, name, progress: 0 }
 
@@ -128,7 +139,10 @@ function setupHero(film, variant) {
     const r = cut.getBoundingClientRect()
     cut.width = Math.round(r.width * dpr)
     cut.height = Math.round(r.height * dpr)
-    if (ok) drawCover(ctx, img, cut.width, cut.height, 0.5, 0.5)
+    if (!ok) return
+    ctx.clearRect(0, 0, cut.width, cut.height)
+    if (variant === 'm') { const b = bandRect(cut.width, cut.height); ctx.drawImage(img, b.x, b.y, b.w, b.h) }
+    else drawCover(ctx, img, cut.width, cut.height, 0.5, 0.5)
   }
   img.onload = () => { ok = true; paint() }
   img.onerror = () => { cut.remove() }

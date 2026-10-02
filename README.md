@@ -18,7 +18,7 @@ npm run dev
 - `src/film.js` — motor de secuencias de fotogramas (carga progresiva, dibujo tipo cover)
 - `src/main.js` — Lenis + GSAP ScrollTrigger, capítulos, reloj solar, día/noche, galería, reserva
 - `src/config.js` — datos del anuncio (ID de Airbnb, WhatsApp, capacidad) — **completar antes de publicar**
-- `tools/build_frames.py` — convierte clips MP4 en secuencias WebP (escritorio 16:9 y celular 9:16)
+- `tools/build_frames.py` — convierte clips MP4 en secuencias WebP (escritorio 16:9 a 1600 px y celular 16:9 completo a 960 px)
 - `tools/build_images.py` — exporta las fotos editadas a WebP
 
 ## Regenerar fotogramas
