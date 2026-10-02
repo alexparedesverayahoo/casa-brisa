@@ -238,18 +238,16 @@ ScrollTrigger.create({
   onEnter: () => setTimeout(() => { if (dnBtn.getAttribute('aria-pressed') !== 'true') dnBtn.click() }, 900),
 })
 
-/* Interiores: recorrido horizontal fijado en escritorio */
-ScrollTrigger.matchMedia({
-  '(min-width: 721px)': () => {
-    const track = document.querySelector('.rooms__track')
-    const dist = () => track.scrollWidth - (window.innerWidth - track.getBoundingClientRect().left) + 40
-    gsap.to(track, {
-      x: () => -dist(),
-      ease: 'none',
-      scrollTrigger: { trigger: '.rooms', pin: '.rooms__pin', start: 'top top', end: () => '+=' + dist(), scrub: 0.6, invalidateOnRefresh: true },
-    })
-  },
-})
+/* Interiores: recorrido horizontal fijado (escritorio y celular) */
+{
+  const track = document.querySelector('.rooms__track')
+  const dist = () => Math.max(0, track.scrollWidth - (window.innerWidth - track.getBoundingClientRect().left) + 40)
+  gsap.to(track, {
+    x: () => -dist(),
+    ease: 'none',
+    scrollTrigger: { trigger: '.rooms', pin: '.rooms__pin', start: 'top top', end: () => '+=' + dist(), scrub: 0.6, invalidateOnRefresh: true },
+  })
+}
 
 /* Aparición de bloques */
 const toReveal = document.querySelectorAll('.facts .display, .facts__list li, .facts__note, .perks li, .daynight__head, .dn-card, .where .display, .where__lede, .where__list li, .route, .book__inner > *')
